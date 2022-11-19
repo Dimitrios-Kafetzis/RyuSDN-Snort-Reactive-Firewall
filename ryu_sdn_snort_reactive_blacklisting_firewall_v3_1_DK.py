@@ -1,4 +1,10 @@
-# Copyright (C) 2013 Nippon Telegraph and Telephone Corporation.
+# Authors: Dimitrios Kafetzis and Nippon Telegraph and Telecom Company
+#
+# DISCLAIMER:
+# This is a modified code of the initial simple_switch_snort.py that is 
+# written by Nippon Telegraph and Telecom Corporation and is available
+# on Ryu framework https://github.com/faucetsdn/ryu/tree/master/ryu/app
+# 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -6,12 +12,13 @@
 #
 #    http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-# implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# ----------------------------------------------------------------------
+#
+# This is a reactive firewall Ryu application that performs dynamically 
+# black-listing and blocking of malicious traffic that is detected 
+# by Snort IDS.
+# 
+
 
 from __future__ import print_function
 
@@ -34,7 +41,7 @@ class SimpleSwitchSnort(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
     _CONTEXTS = {'snortlib': snortlib.SnortLib}
     
-
+    #Initialization method, where the ryu-snort interface is established
     def __init__(self, *args, **kwargs):
         super(SimpleSwitchSnort, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
@@ -65,7 +72,7 @@ class SimpleSwitchSnort(app_manager.RyuApp):
             self.logger.info("%r", eth)
 
     #This method is the Snort alerts' handler. 
-    #When Snort populates an Alert Event,
+    #When Snort IDS populates an Alert Event,
     #this is received by this handler. 
     #The reactive firewall is implemented in this method. 
     @set_ev_cls(snortlib.EventAlert, MAIN_DISPATCHER)
