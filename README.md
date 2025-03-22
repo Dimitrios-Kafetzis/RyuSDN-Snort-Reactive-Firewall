@@ -1,6 +1,6 @@
 # Ryu SDN Controller based Reactive Firewall with Snort IDS Integration
-This repository contains a Ryu-based reactive firewall application that integrates with Snort IDS. It dynamically blacklists and blocks malicious traffic by installing drop flow rules on an OpenFlow switch when Snort alerts detect suspicious activity.
 ---
+This repository contains a Ryu-based reactive firewall application that integrates with Snort IDS. It dynamically blacklists and blocks malicious traffic by installing drop flow rules on an OpenFlow switch when Snort alerts detect suspicious activity.
 ## Features
 - **Dynamic Blacklisting**: Automatically adds IPv4 (source, destination) pairs to a blacklist upon receiving an alert from Snort IDS.
 - **Reactive Flow Installation**: Installs high-priority drop rules in the OpenFlow switch to block further malicious traffic.
